@@ -9,5 +9,15 @@ setup(
 	author = "M69k65y",
 	license = "MIT",
 	packages = ["json-simple-validator"],
-	zip_safe=False
+	zip_safe=False,
+	install_requires = [
+		"phonenumbers"
+	],
+	classifiers = [
+		"Development Status :: 3 - Alpha",
+		"Framework :: Flask",
+		"License :: OSI Approved :: MIT License",
+		"Programming Language :: Python :: 3"
+	],
+	keywords = "flask json validation validator"
 )
