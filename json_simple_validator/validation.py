@@ -2,8 +2,8 @@ import re
 import phonenumbers
 
 
-### Checks is a variable is empty or not ###
-def isEmpty(variable):
+### Checks if a variable is empty or not ###
+def is_empty(variable):
 	if variable:
 		return variable
 	else:
@@ -39,7 +39,7 @@ def isEmpty(variable):
 # 1. requestData - The request data e.g the data found in request.json
 # 2. fieldList - An array of fields to be validated against which requestData is compared
 # Returns an array of missing or empty fields (if any)
-def fieldValidation(requestData, fieldList):
+def field_validation(requestData, fieldList):
 	messages = []
 
 	for field in fieldList:
@@ -71,16 +71,16 @@ def fieldValidation(requestData, fieldList):
 				messages.append(field_alias + " is empty.")
 			else:
 				## Handling the variable type check
-				dataTypeHelper(messages, field_name, field_alias, requestData, field_var_type)
+				data_type_helper(messages, field_name, field_alias, requestData, field_var_type)
 				
 				## Handling the length check
-				dataLengthHelper(messages, field_name, field_alias, requestData, field_length)
+				data_length_helper(messages, field_name, field_alias, requestData, field_length)
 				
 				## Handling the sub-array check
-				subArrayHelper(messages, field_name, field_alias, requestData, field_sub_array)
+				sub_array_helper(messages, field_name, field_alias, requestData, field_sub_array)
 				
 				## Handling the special rules
-				specialRulesHelper(messages, field_name, field_alias, requestData, field_special_rules)
+				special_rules_helper(messages, field_name, field_alias, requestData, field_special_rules)
 
 		else:
 			messages.append(field_alias + " is missing.")
@@ -89,7 +89,7 @@ def fieldValidation(requestData, fieldList):
 
 
 # Helpers #
-def dataTypeHelper(returnList, fieldName, fieldAlias, requestData, dataTypeList):
+def data_type_helper(returnList, fieldName, fieldAlias, requestData, dataTypeList):
 	if dataTypeList == None:
 		pass
 	elif dataTypeList != None:
@@ -99,7 +99,7 @@ def dataTypeHelper(returnList, fieldName, fieldAlias, requestData, dataTypeList)
 			returnList.append(fieldAlias + " data type is not of the expected data type.")
 
 
-def dataLengthHelper(returnList, fieldName, fieldAlias, requestData, dataLength):
+def data_length_helper(returnList, fieldName, fieldAlias, requestData, dataLength):
 	if dataLength == None:
 		pass
 	elif dataLength != None:
@@ -134,7 +134,7 @@ def dataLengthHelper(returnList, fieldName, fieldAlias, requestData, dataLength)
 				pass
 
 
-def subArrayHelper(returnList, fieldName, fieldAlias, requestData, dataSubArray):
+def sub_array_helper(returnList, fieldName, fieldAlias, requestData, dataSubArray):
 	if dataSubArray == None:
 		pass
 	else:
@@ -152,13 +152,13 @@ def subArrayHelper(returnList, fieldName, fieldAlias, requestData, dataSubArray)
 			position += 1
 
 
-def specialRulesHelper(returnList, fieldName, fieldAlias, requestData, dataSpecialRules):
+def special_rules_helper(returnList, fieldName, fieldAlias, requestData, dataSpecialRules):
 	if dataSpecialRules == None:
 		pass
 	else:
 		# Email addresses
 		if "email" in dataSpecialRules:
-			valid = validateEmail(isEmpty(requestData[fieldName]))
+			valid = validate_email(is_empty(requestData[fieldName]))
 			if valid == True:
 				pass
 			else:
@@ -171,7 +171,7 @@ def specialRulesHelper(returnList, fieldName, fieldAlias, requestData, dataSpeci
 ### Simple email validation rule ###
 # emailAddress is the email address to be validated
 # Function is regex-based
-def validateEmail(emailAddress):
+def validate_email(emailAddress):
 	if emailAddress == None:
 		valid = False
 	else:
@@ -191,7 +191,7 @@ def validateEmail(emailAddress):
 ### Phone number validation rule ##
 # phoneNumber is the phone number to be validated
 # Function requires import of phonenumbers
-def validatePhoneNumber(phoneNumber):
+def validate_phone_number(phoneNumber):
 	valid = []
 	
 	if phoneNumber == None:

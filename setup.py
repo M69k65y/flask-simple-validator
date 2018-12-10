@@ -1,14 +1,19 @@
 from setuptools import setup
 
 
+def readme():
+	with open("readme.rst") as f:
+		return f.read()
+
+
 setup(
-	name = "flask-simple-validator",
+	name = "json-simple-validator",
 	version = "1.0",
-	description = "A simple JSON validator for use in Python projects. (Built in Python 3)",
+	description = "A simple JSON validator for use in Flask projects. (Built in Python 3)",
 	url = "https://github.com/M69k65y/json-simple-validator",
 	author = "M69k65y",
 	license = "MIT",
-	packages = ["json-simple-validator"],
+	packages = ["json_simple_validator"],
 	zip_safe=False,
 	install_requires = [
 		"phonenumbers"
